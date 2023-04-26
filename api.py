@@ -6,8 +6,8 @@ from flask import Flask, jsonify
 import tweepy
 
 app = Flask(__name__)
-@app.route('/latest_tweet')
-def latest_tweet():
+@app.route('/latest_tweet/<username>')
+def latest_tweet(username):
     # Authenticate to Twitter API
     auth = tweepy.OAuthHandler(eda_key.YOUR_CONSUMER_KEY, eda_key.YOUR_CONSUMER_SECRET)
     auth.set_access_token(eda_key.YOUR_ACCESS_TOKEN, eda_key.YOUR_ACCESS_SECRET)
@@ -16,7 +16,6 @@ def latest_tweet():
     api = tweepy.API(auth)
 
     # Get the latest tweet from a user
-    username = "shanto_spry"
     tweet = api.user_timeline(screen_name=username, count=1, tweet_mode="extended")[0]
     
     
