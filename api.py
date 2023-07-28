@@ -6,6 +6,11 @@ from flask import Flask, jsonify
 import tweepy
 
 app = Flask(__name__)
+
+@app.route('/')
+def main():
+    return "Welcome to the Twitter Tweets API!"
+
 @app.route('/latest_tweet/<username>')
 def latest_tweet(username):
     # Authenticate to Twitter API
